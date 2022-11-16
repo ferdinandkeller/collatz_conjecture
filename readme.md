@@ -1,10 +1,10 @@
-# Collatz Conjecture
+# Collatz Sequence
 This algorithm will compute the length of the Collatz sequence for all numbers in a given range.
 It will then output:
     - The number in the provided range with the longest Collatz sequence.
     - The biggest number computed while computing the Collatz sequence.
 
-# Collatz Sequence
+# Collatz Conjecture
 The Collatz sequence is defined as follows:
     - If the number is even, divide it by 2.
     - If the number is odd, multiply it by 3 and add 1.
