@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":[["collatz_sequence","Compute the collatz sequence for a given number and add every step to the cache. This function will use the cache to avoid computing the same sequence twice."],["collatz_step","Compute the next number in the collatz sequence. We use a BigUint because the numbers can get very big very quickly."],["main",""]]};

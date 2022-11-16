@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../collatz_sequence/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../collatz_sequence/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../collatz_sequence/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<span id="2">2</span>
+<span id="3">3</span>
+<span id="4">4</span>
+<span id="5">5</span>
+<span id="6">6</span>
+<span id="7">7</span>
+<span id="8">8</span>
+<span id="9">9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+<span id="59">59</span>
+<span id="60">60</span>
+<span id="61">61</span>
+<span id="62">62</span>
+<span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
+<span id="89">89</span>
+<span id="90">90</span>
+<span id="91">91</span>
+<span id="92">92</span>
+<span id="93">93</span>
+<span id="94">94</span>
+<span id="95">95</span>
+</pre><pre class="rust"><code><span class="doccomment">//! This algorithm will compute the length of the Collatz sequence for all numbers in a given range.
+//! It will then output:
+//! - The number in the provided range with the longest Collatz sequence.
+//! - The biggest number computed while computing the Collatz sequence.
+//! 
+//! # Collatz Sequence
+//! The Collatz sequence is defined as follows:
+//! - If the number is even, divide it by 2.
+//! - If the number is odd, multiply it by 3 and add 1.
+//! And you repeat this process until you reach 1. The length of the sequence is the number of steps needed to reach 1.
+//! 
+//! The Collatz conjecture is the conjecture that for any number, the Collatz sequence will always reach 1.
+//! Hypothetically, the sequence could go on forever, or find another cycle, as this conjecture has not yet been proven.
+
+</span><span class="kw">use </span>std::{collections::HashMap, str::FromStr};
+<span class="kw">use </span>num_bigint::BigUint;
+<span class="kw">use </span>num_format::{Locale, ToFormattedString};
+
+<span class="kw">fn </span>main() {
+    <span class="comment">// create a new HashMap that will cache the length of each Collatz sequence
+    // this way if a sequence ends up somewhere we know, we don&#39;t have to recompute everything
+    </span><span class="kw">let </span><span class="kw-2">mut </span>cache = HashMap::new();
+    cache.insert(BigUint::from(<span class="number">1u32</span>), <span class="number">0</span>);
+
+    <span class="comment">// define where the sequence should start and end
+    </span><span class="kw">let </span><span class="kw-2">mut </span>number = BigUint::from(<span class="number">2u32</span>);
+    <span class="kw">let </span>target = BigUint::from_str(<span class="string">&quot;10_000_000&quot;</span>).unwrap();
+
+    <span class="comment">// loop every number in the the range
+    </span><span class="kw">loop </span>{
+        <span class="comment">// compute the sequence for the current number
+        </span>collatz_sequence(<span class="kw-2">&amp;mut </span>cache, number.clone());
+
+        <span class="comment">// get the next number
+        </span>number += <span class="number">1u32</span>;
+
+        <span class="comment">// check if we reached the target
+        </span><span class="kw">if </span>target &lt;= number {
+            <span class="kw">break</span>;
+        }
+    }
+
+    <span class="comment">// display the results to the user
+    </span><span class="kw">let </span>max_steps = cache
+        .iter()
+        .max_by(|(<span class="kw">_</span>, a), (<span class="kw">_</span>, b)| a.cmp(b))
+        .unwrap();
+
+    <span class="kw">let </span>max_computed = cache
+        .iter()
+        .max_by(|(a, <span class="kw">_</span>), (b, <span class="kw">_</span>)| a.cmp(b))
+        .unwrap();
+
+    <span class="macro">println!</span>(<span class="string">&quot;In the range [1-{target}], {number} has the most number of steps : {steps}.&quot;</span>,
+        target = target.to_formatted_string(<span class="kw-2">&amp;</span>Locale::en),
+        number = max_steps.<span class="number">0</span>.to_formatted_string(<span class="kw-2">&amp;</span>Locale::en),
+        steps = max_steps.<span class="number">1
+    </span>);
+    <span class="macro">println!</span>(<span class="string">&quot;While computing the sequence for the numbers in the range [1-{target}], the biggest number computed was {number}.&quot;</span>,
+        target = target.to_formatted_string(<span class="kw-2">&amp;</span>Locale::en),
+        number = max_computed.<span class="number">0</span>.to_formatted_string(<span class="kw-2">&amp;</span>Locale::en)
+    );
+}
+
+<span class="doccomment">/// Compute the collatz sequence for a given number and add every step to the cache.
+/// This function will use the cache to avoid computing the same sequence twice.
+</span><span class="kw">fn </span>collatz_sequence(cache: <span class="kw-2">&amp;mut </span>HashMap&lt;BigUint, usize&gt;, <span class="kw-2">mut </span>number: BigUint) {
+    <span class="comment">// a list of the numbers we are going through while computing the sequence
+    </span><span class="kw">let </span><span class="kw-2">mut </span>temps_list = <span class="macro">vec!</span>[number.clone()];
+
+    <span class="comment">// compute the sequence for that number
+    </span><span class="kw">while </span>!cache.contains_key(<span class="kw-2">&amp;</span>number) {
+        number = collatz_step(number);
+        temps_list.push(number.clone());
+    }
+
+    <span class="kw">let </span><span class="kw-2">mut </span>steps = cache[<span class="kw-2">&amp;</span>number];
+    <span class="kw">for </span>number <span class="kw">in </span>temps_list.into_iter().rev().skip(<span class="number">1</span>) {
+        steps += <span class="number">1</span>;
+        cache.insert(number, steps);
+    }
+}
+
+<span class="doccomment">/// Compute the next number in the collatz sequence.
+/// We use a BigUint because the numbers can get very big very quickly.
+</span><span class="kw">fn </span>collatz_step(number: BigUint) -&gt; BigUint {
+    <span class="comment">// if the number is even, divide it by 2
+    </span><span class="kw">if </span>number.clone() % <span class="number">2u32 </span>== BigUint::from(<span class="number">0u32</span>) {
+        number / <span class="number">2u32
+
+    </span><span class="comment">// if the number is odd, multiply it by 3 and add 1
+    </span>} <span class="kw">else </span>{
+        number * <span class="number">3u32 </span>+ <span class="number">1u32
+    </span>}
+}
+</code></pre></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="collatz_sequence" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
