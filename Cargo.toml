@@ -2,7 +2,7 @@
 name = "collatz-sequence"
 version = "0.1.0"
 edition = "2021"
-author = "Ferdinand Keller"
+authors = ["Ferdinand Keller"]
 license = "MIT"
 description = "An algorithm for computing the Collatz sequence"
 
